@@ -1,0 +1,89 @@
+
+<%- include('./partials/header') %>
+<!-- loader END -->
+<!-- Header -->
+
+<%- include('./partials/topMenu') %>
+  
+   <div class=" iq-main-slider">
+      <video id="abhinav" class="video-js video-js vjs-big-play-centered">
+         <% var videoPath = movie.video %>
+         <% videoPath = videoPath.slice(7,videoPath.length) %>
+         <source
+           src="<%=videoPath%>"
+           type="video/mp4"
+           label="SD"
+           res="480"
+         />
+       </video>
+   </div>
+   <!-- Banner End -->
+   <!-- MainContent -->
+   <div class="main-content movi">
+      <section class="movie-detail container-fluid">
+         <div class="row">
+            <div class="col-lg-12">
+               <div class="trending-info g-border">
+                  <h1 class="trending-text big-title text-uppercase mt-0"> <%= movie.title %> </h1>
+                  <ul class="p-0 list-inline d-flex align-items-center movie-content">
+                     <li class="text-white"> <%= movie.category %> </li>
+                  </ul>
+                  <div class="d-flex align-items-center text-white text-detail">
+                     <% if(!requested){ %> 
+                        <span class="badge badge-secondary p-3"> <%= movie.forVIPOnly %> </span>
+                     <% } %>
+                     <span class="ml-3"> <%= movie.movieDuration %> </span>
+                     <span class="trending-year"> <%= movie.releaseYear %></span>
+                  </div>
+                  <p class="trending-dec w-100 mb-0"> <%= movie.description %> </p>
+                  <% if(!requested){ %> 
+                     <ul class="list-inline p-0 mt-4 share-icons music-play-lists">
+                        <li><span><i class="ri-add-line"></i></span></li>
+                        <li><span><i class="ri-heart-fill"></i></span></li>
+                        <li class="share">
+                           <span><i class="ri-share-fill"></i></span>
+                           <div class="share-box">
+                              <div class="d-flex align-items-center">
+                                 <a href="#" class="share-ico"><i class="ri-facebook-fill"></i></a>
+                                 <a href="#" class="share-ico"><i class="ri-twitter-fill"></i></a>
+                                 <a href="#" class="share-ico"><i class="ri-links-fill"></i></a>
+                              </div>
+                           </div>
+                        </li>
+                     </ul>   
+                  <% } %>
+                  
+               </div>
+            </div>
+         </div>
+      </section>
+    
+   </div>
+
+   <script src="https://vjs.zencdn.net/7.10.2/video.min.js"></script>
+   <script src="https://cdn.sc.gl/videojs-hotkeys/latest/videojs.hotkeys.min.js"></script>
+   <script>
+
+      var links = <%- JSON.stringify(movie.images) %> 
+      var img = links[0]
+      img = img.slice(7,img.length)
+     var player = videojs('abhinav', {
+       controls: true,
+       loop: true,
+       fluid: true,
+       preload:'auto',
+       playbackRates: [0.5, 1, 1.5, 2, 2.5],
+       plugins: {
+         hotkeys: {
+           enableModifiersForNumbers: false,
+           seekStep: 5,
+         },
+       },
+       poster: img ,
+     });
+    
+   </script>
+   <script>
+     videojs('video').videoJsResolutionSwitcher()
+   </script>
+<%- include('./partials/footer') %>

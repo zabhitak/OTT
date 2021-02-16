@@ -1,0 +1,145 @@
+<%- include('./partials/header') %>
+<%- include('./partials/sidenav') %>
+<%- include('../partials/flashMessage') %>
+
+      <!-- TOP Nav Bar -->
+      <%- include('./partials/topnav') %>
+      <!-- TOP Nav Bar END -->
+      <div id="content-page" class="content-page">
+        <div class="container-fluid">
+           <div class="row">
+              <div class="col-sm-12">
+                 <div class="iq-card">
+                    <div class="iq-card-header d-flex justify-content-between">
+                       <div class="iq-header-title">
+                          <h4 class="card-title">Edit <%= movie.title %> </h4>
+                       </div>
+                    </div>
+                    <div class="iq-card-body">
+                       <form method="POST" action="/editMovie-<%=movie.id%>" enctype="multipart/form-data" >
+                          <div class="row">
+                             <div class="col-lg-12">
+                                <div class="row">
+                                   <div class="col-12 form-group">
+                                      <input type="text" name="title" value="<%=movie.title%>" required class="form-control" placeholder="Title">
+                                   </div>
+                                   <div class="col-12 form_gallery form-group">
+                                      <label id="gallery2" for="form_gallery-upload">Upload Thumbnail</label>
+                                      <input data-name="#gallery2" id="form_gallery-upload" name="thumbnail" multiple="multiple" class="form_gallery-upload"
+                                         type="file" accept=".png, .jpg, .jpeg">
+                                   </div>
+                                   <div class="col-md-6 form-group">
+                                      <select name="category" required class="form-control" id="exampleFormControlSelect1">
+                                         <option disabled="">Movie Category</option>
+                                         <% if(movie.category == "Comedy"){ %> 
+                                           <option selected value="Comedy">Comedy</option>
+                                          <%}else{ %> 
+                                            <option value="Comedy">Comedy</option>
+                                          <% } %>
+                                          <% if(movie.category == "Crime"){ %> 
+                                            <option selected value="Crime">Crime</option>
+                                           <%}else{ %> 
+                                            <option value="Crime">Crime</option>
+                                           <% } %>
+                                           <% if(movie.category == "Drama"){ %> 
+                                            <option selected value="Drama">Drama</option>
+                                           <%}else{ %> 
+                                            <option value="Drama">Drama</option>
+                                           <% } %>
+                                           <% if(movie.category == "Horror"){ %> 
+                                            <option selected value="Horror">Horror</option>
+                                           <%}else{ %> 
+                                            <option value="Horror">Horror</option>
+                                           <% } %>
+                                           <% if(movie.category == "Romance"){ %> 
+                                            <option selected value="Romance">Romance</option>
+                                           <%}else{ %> 
+                                            <option value="Romance">Romance</option>
+                                           <% } %>
+                                      </select>
+                                   </div>
+                                   <div class="col-sm-6 form-group">
+                                      <select name="quality" required class="form-control" id="exampleFormControlSelect2">
+                                         <option disabled="">Choose quality</option>
+                                         <% if(movie.quality == "FULLHD"){ %> 
+                                          <option selected value="FULLHD">FULLHD</option>
+                                         <%}else{ %> 
+                                          <option value="FULLHD">FULLHD</option>
+                                         <% } %>
+                                         <% if(movie.quality == "HD"){ %> 
+                                          <option selected value="HD">HD</option>
+                                         <%}else{ %> 
+                                          <option value="HD">HD</option>
+                                         <% } %>
+                                      </select>
+                                   </div>
+                                   <div class="col-12 form-group">
+                                      <textarea name="description" required id="text" name="text" rows="5" class="form-control"
+                                         placeholder="Description"> <%= movie.description %> </textarea>
+                                   </div>
+                                </div>
+                             </div>
+                                 
+                          </div>
+                          <div class="row">
+                             <div class="col-sm-6 form-group">
+                                <input name="releaseYear" value="<%= movie.releaseYear %>" required type="text" class="form-control" placeholder="Release year">
+                             </div>
+                             <div class="col-sm-6 form-group">
+                                <select name="language" required class="form-control" id="exampleFormControlSelect3">
+                                   <option disabled="">Choose Language</option>
+                                   <% if(movie.language == "English"){ %> 
+                                    <option selected value="English">English</option>
+                                   <%}else{ %> 
+                                    <option value="English">English</option>
+                                   <% } %>
+                                   <% if(movie.language == "Hindi"){ %> 
+                                    <option selected value="Hindi">Hindi</option>
+                                   <%}else{ %> 
+                                    <option value="Hindi">Hindi</option>
+                                   <% } %>
+                                   <% if(movie.language == "Tamil"){ %> 
+                                    <option selected value="Tamil">Tamil</option>
+                                   <%}else{ %> 
+                                    <option value="Tamil">Tamil</option>
+                                   <% } %>
+                                   <% if(movie.language == "Gujarati"){ %> 
+                                    <option selected value="Gujarati">Gujarati</option>
+                                   <%}else{ %> 
+                                    <option value="Gujarati">Gujarati</option>
+                                   <% } %>
+                                </select>
+                             </div>
+                              <div class="col-sm-6 form-group">
+                                <input name="movieDuration" required type="text" value="<%= movie.movieDuration %>"  class="form-control" placeholder="Movie Duration">
+                              </div>
+                              <div class="col-sm-6 form-group">
+                                 <select name="forVIPOnly" required class="form-control" id="exampleFormControlSelect3">
+                                    <option disabled="">Choose Access</option>
+
+                                   <% if(movie.forVIPOnly == "VIP"){ %> 
+                                    <option selected value="VIP">For VIP Only</option>
+                                   <%}else{ %> 
+                                    <option value="VIP">For VIP Only</option>
+                                   <% } %>
+                                   <% if(movie.forVIPOnly == "Free"){ %> 
+                                    <option selected value="Free">For Free</option>
+                                   <%}else{ %> 
+                                    <option value="Free">For Free</option>
+                                   <% } %>
+                                 </select>   
+                              </div>
+                             <div class="col-12 form-group ">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="reset" class="btn btn-danger">cancel</button>
+                             </div>
+                          </div>
+                       </form>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+
+<%- include('./partials/footer') %>
