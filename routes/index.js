@@ -9,6 +9,9 @@ const addMovieUserFunc = require(`${commonPath}addMovieUserFunc`)
 const requestedMovieDetail = require(`${commonPath}requestedMovieDetail`)
 const plans = require(`${commonPath}plans`)
 const purchasePlan = require(`${commonPath}purchasePlan`)
+const createScreens = require(`${commonPath}createScreens`)
+const createScreensFunc = require(`${commonPath}createScreensFunc`)
+const myScreens = require(`${commonPath}myScreens`)
 
 const middleware = require("../middleware");
 
@@ -37,5 +40,9 @@ router.get("/requestedMovieDetail-:movieId",middleware.isLoggedIn,requestedMovie
 
 router.get("/plans",middleware.isLoggedIn,plans)
 router.post("/purchasePlan-:planNum",middleware.isLoggedIn,purchasePlan)
+router.get("/createScreens",middleware.isLoggedIn,createScreens)
+router.post("/createScreens",middleware.isLoggedIn,createScreensFunc)
+router.get("/myScreens",middleware.isLoggedIn,myScreens)
+
 
 module.exports = router

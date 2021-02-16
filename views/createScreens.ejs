@@ -1,0 +1,75 @@
+<%- include('./partials/header') %>
+
+<%- include('./partials/topMenu') %>
+<div class="container-fluid">
+        <section class="m-profile">
+            <div class="container">
+                <h4 class="main-title mb-4">Current Pricing Plan</h4>
+                <div class="row justify-content-center">
+
+                    <div class="row" style="width: 100%;">
+                        <div class="col-lg-4 col-sm-12">
+                            <div class="sign-user_card">
+                                <div class="table-responsive pricing pt-2">
+                                    <table id="my-table" class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center prc-wrap"></th>
+                                                <th class="text-center prc-wrap">
+                                                    <div class="prc-box">
+                                                        <div class="h3 pt-4 text-white">  <small><%= currentPlan.planPrice %></small></div>
+                                                        <span class="type"> <%= currentPlan.planName %> </span>
+                                                    </div>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th class="text-center" scope="row">Screens</th>
+                                                <td class="text-center child-cell"> <%= currentPlan.numScreens %> </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center"> </td>
+                                                <td class="text-center">
+                                                    <a href="#"  class="btn btn-success mb-3 ">
+                                                        Purchased <i class="ri-check-line ri-2x"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 col-sm-12">
+                            <div class="iq-card">
+                               <div class="iq-card-header d-flex justify-content-between">
+                                  <div class="iq-header-title">
+                                     <h4 class="card-title">Add Screens Name</h4>
+                                  </div>
+                               </div>
+                               <div class="iq-card-body">
+                                  <form method="POST" action="createScreens">
+                                    <% var count = 1 %>
+                                    <% for(count = 1; count <= parseInt(currentPlan.numScreens); count = count + 1 ){ %> 
+                                        <div class="form-group">   
+                                            <label for="name<%=count%>">Screen</label>
+                                            <input type="text" name="name<%=count%>" required class="form-control" id="name<%=count%>">
+                                        </div>
+                                    <%} %>
+                                     <button type="submit" class="btn btn-primary">Submit</button>
+                                  </form>
+                               </div>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        
+ </div>
+
+ 
+<%- include('./partials/footer') %> 
+ 
