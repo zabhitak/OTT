@@ -36,7 +36,20 @@ const UserSchema = mongoose.Schema({
     isVIP : {
         type : Boolean,
         default : false
-    }
+    },
+    currentPlan : {
+        planName : String,
+        planPrice : String,
+        numScreens : String,
+        purchaseDate : Date,
+        expiryDate : Date,
+        screens : [{
+            name : String,
+            pin : String,
+        }],
+        default : ""
+    },
+    
 })
  
 

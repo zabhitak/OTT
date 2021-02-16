@@ -51,18 +51,18 @@ const signup = async (req,res) => {
                     }
             
                     const mailOpts = {
-                        from: "Natto",
+                        from: "OTT",
                         to : email,
-                        subject: 'Natto | Verify Account',
+                        subject: 'OTT | Verify Account',
                         text: "Hi," + "\n\n" + 
-                        "To proceed further with your account verification at Natto , Please use the OTP given below.This OTP is only valid for 60 minutes."
+                        "To proceed further with your account verification at OTT , Please use the OTP given below.This OTP is only valid for 60 minutes."
                         + "\n\n" + 
                         "OTP : " + otp + " \n\n" + 
                         "Regards,\n" +
-                        "Team ,Natto"
+                        "Team ,OTT"
                     }
             
-                    var response = await smtpTrans.sendMail(mailOpts)
+                    // var response = await smtpTrans.sendMail(mailOpts)
                     var otpCreated = await OTP.create({
                         timeOfSending : Date.now(),
                         otp ,

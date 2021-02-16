@@ -32,11 +32,11 @@ indexRoute = async (req,res) => {
                 return eachMovie.category == "Romance"
               } )
               res.render("index",{ user : user, title : "My Profile",allMovies,requestedMovies,movies,
-                    comedyMovies, crimeMovies,dramaMovies, horrorMovies,romanceMovies
+                  comedyMovies, crimeMovies,dramaMovies, horrorMovies,romanceMovies
               })
             }
           }else{
-            res.redirect("index")
+            res.redirect("/signin")
           }
         }
     })

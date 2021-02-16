@@ -33,6 +33,14 @@ var productSchema = new mongoose.Schema({
         type : String,
         default : ""
     },
+    trailer : {
+        type : String,
+        default : ""
+    },
+    preview : {
+        type : String,
+        default : ""
+    },
     releaseYear : {
         type : String,
         default : ""
