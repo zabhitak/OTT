@@ -9,7 +9,9 @@
          <div id="home-slider" class="slider m-0 p-0">
             <% var latestThree = allMovies.slice(0,3) ; %>
             <% latestThree.forEach( eachMovie =>{ %> 
-               <div class="slide slick-bg s-bg-1">
+               <% var img = eachMovie.images[0] %>
+               <% img = img.slice(7,img.length) %>
+               <div class="slide slick-bg s-bg-1" style="background-image: url(<%=img%>);" >
                   <div class="container-fluid position-relative h-100">
                      <div class="slider-inner h-100">
                         <div class="row align-items-center  h-100">

@@ -19,30 +19,6 @@ const UserSchema = mongoose.Schema({
         type : mongoose.Schema.Types.ObjectId,
         ref : "OTP"
     },
-    avatar : {
-        type : String,
-        default : null
-    },
-    fullName : {
-        type : String,
-        default : ""
-    },
-    address : {
-        type : String,
-        default : ""
-    },
-    description : {
-        type : String,
-        default : ""
-    },
-    phoneNumber : {
-        type : String,
-        default : ""
-    },
-    website : {
-        type : String,
-        default : ""
-    },
     role : {
         type : String,
         default : "User"
@@ -57,6 +33,10 @@ const UserSchema = mongoose.Schema({
         ref : "Product",
         default : []
     }],
+    isVIP : {
+        type : Boolean,
+        default : false
+    }
 })
  
 
