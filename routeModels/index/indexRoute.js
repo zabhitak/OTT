@@ -16,7 +16,24 @@ indexRoute = async (req,res) => {
               res.redirect("/admin/index")
             }else{
               var { movies,requestedMovies } = user
-              res.render("index",{ user : user, title : "My Profile",allMovies,requestedMovies,movies })
+              var comedyMovies = allMovies.filter( eachMovie => {
+                return eachMovie.category == "Comedy"
+              } )
+              var crimeMovies = allMovies.filter( eachMovie => {
+                return eachMovie.category == "Crime"
+              } )
+              var dramaMovies = allMovies.filter( eachMovie => {
+                return eachMovie.category == "Drama"
+              } )
+              var horrorMovies = allMovies.filter( eachMovie => {
+                return eachMovie.category == "Horror"
+              } )
+              var romanceMovies = allMovies.filter( eachMovie => {
+                return eachMovie.category == "Romance"
+              } )
+              res.render("index",{ user : user, title : "My Profile",allMovies,requestedMovies,movies,
+                    comedyMovies, crimeMovies,dramaMovies, horrorMovies,romanceMovies
+              })
             }
           }else{
             res.redirect("index")

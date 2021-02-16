@@ -49,12 +49,13 @@
       <!-- Slider End -->
       <!-- MainContent -->
       <div class="main-content">
+         <% if(requestedMovies.length != 0){ %> 
          <section id="iq-favorites">
             <div class="container-fluid">
                <div class="row">
                   <div class="col-sm-12 overflow-hidden">
                      <div class="iq-main-header d-flex align-items-center justify-content-between">
-                        <h4 class="main-title"><a href="movie-category.html">Your Requested Movies</a></h4>                      
+                        <h4 class="main-title"><a href="">Your Requested Movies</a></h4>                      
                      </div>
                      <div class="favorites-contens">
                         <ul class="favorites-slider list-inline  row p-0 mb-0">
@@ -90,12 +91,14 @@
                </div>
             </div>
          </section>
+         <% } %>
+         <% if(movies.length != 0){ %> 
          <section id="iq-upcoming-movie">
             <div class="container-fluid">
                <div class="row">
                   <div class="col-sm-12 overflow-hidden">
                      <div class="iq-main-header d-flex align-items-center justify-content-between">                        
-                        <h4 class="main-title"><a href="movie-category.html">Your Movies</a></h4>
+                        <h4 class="main-title"><a href="#">Your Movies</a></h4>
                      </div>
                      <div class="upcoming-contens">
                         <ul class="favorites-slider list-inline row p-0 mb-0">
@@ -137,320 +140,252 @@
                </div>
             </div>
          </section>
-         <section id="iq-topten">
-            <div class="container-fluid">
-               <div class="row">
-                  <div class="col-sm-12 overflow-hidden">
-                     <div class="iq-main-header d-flex align-items-center justify-content-between">
-                        <h4 class="main-title topten-title-sm">Top 10 in India</h4>
-                     </div>
-                     <div class="topten-contens">
-                        <h4 class="main-title topten-title">Top 10 in India</h4>
-                        <ul id="top-ten-slider" class="list-inline p-0 m-0  d-flex align-items-center">
-                           <li>
-                              <a href="movie-details.html">
-                              <img src="images/top-10/01.jpg" class="img-fluid w-100" alt="">
-                              </a>
-                           </li>
-                           <li>
-                              <a href="movie-details.html">
-                              <img src="images/top-10/02.jpg" class="img-fluid w-100" alt="">
-                              </a>
-                           </li>
-                           <li>
-                              <a href="movie-details.html">
-                              <img src="images/top-10/03.jpg" class="img-fluid w-100" alt="">
-                              </a>
-                           </li>
-                           <li>
-                              <a href="movie-details.html">
-                              <img src="images/top-10/04.jpg" class="img-fluid w-100" alt="">
-                              </a>
-                           </li>
-                           <li>
-                              <a href="movie-details.html">
-                              <img src="images/top-10/05.jpg" class="img-fluid w-100" alt="">
-                              </a>
-                           </li>
-                           <li>
-                              <a href="movie-details.html">
-                              <img src="images/top-10/06.jpg" class="img-fluid w-100" alt="">
-                              </a>
-                           </li>
-                        </ul>
-                        <div class="vertical_s">
-                           <ul id="top-ten-slider-nav" class="list-inline p-0 m-0  d-flex align-items-center">
-                              <li>
-                                 <div class="block-images position-relative">
-                                    <a href="movie-details.html">
-                                    <img src="images/top-10/01.jpg" class="img-fluid w-100" alt="">
+         <% } %>
+         <% if(comedyMovies.length != 0){ %> 
+            <section id="iq-suggestede" class="s-margin">
+               <div class="container-fluid">
+                  <div class="row">
+                     <div class="col-sm-12 overflow-hidden">
+                        <div class="iq-main-header d-flex align-items-center justify-content-between">                       
+                           <h4 class="main-title"><a href="show-category.html">Comedy Movies</a></h4>                       
+                        </div>
+                        <div class="suggestede-contens">
+                           <ul class="list-inline favorites-slider row p-0 mb-0">
+                              <% comedyMovies.forEach( eachMovie => {%> 
+                                 <li class="slide-item">
+                                    <a href="/movieDetail-<%=eachMovie.id%>">
+                                       <div class="block-images position-relative">
+                                          <div class="img-box">
+                                             <% var imgLink = eachMovie.images[0] %>
+                                             <% imgLink = imgLink.slice(7,imgLink.length) %>
+                                             <img src="<%=imgLink%>" class="img-fluid" alt="">
+                                          </div>
+                                          <div class="block-description">
+                                             <h6> <%= eachMovie.title %> </h6>
+                                             <div class="movie-time d-flex align-items-center my-2">
+                                                <div class="badge badge-secondary p-1 mr-2"><%= eachMovie.forVIPOnly %> </div>
+                                                <span class="text-white"> <%= eachMovie.movieDuration%> </span>
+                                             </div>
+                                             <div class="hover-buttons">
+                                                <span class="btn btn-hover"><i class="fa fa-play mr-1" aria-hidden="true"></i>
+                                                Play Now</span>
+                                             </div>
+                                          </div>
+                                          <div class="block-social-info">
+                                             <ul class="list-inline p-0 m-0 music-play-lists">
+                                                <li><span><i class="ri-volume-mute-fill"></i></span></li>
+                                                <li><span><i class="ri-heart-fill"></i></span></li>
+                                                <li><span><i class="ri-add-line"></i></span></li>
+                                             </ul>
+                                          </div>
+                                       </div>
                                     </a>
-                                    <div class="block-description">
-                                       <h5>The Illusion</h5>
-                                       <div class="movie-time d-flex align-items-center my-2">
-                                          <div class="badge badge-secondary p-1 mr-2">10+</div>
-                                          <span class="text-white">3h 15m</span>
-                                       </div>
-                                       <div class="hover-buttons">
-                                          <a href="movie-details.html" class="btn btn-hover" tabindex="0">
-                                          <i class="fa fa-play mr-1" aria-hidden="true"></i> Play Now
-                                          </a>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </li>
-                              <li>
-                                 <div class="block-images position-relative">
-                                    <a href="movie-details.html">
-                                    <img src="images/top-10/02.jpg" class="img-fluid w-100" alt="">
-                                    </a>
-                                    <div class="block-description">
-                                       <h5>Burning</h5>
-                                       <div class="movie-time d-flex align-items-center my-2">
-                                          <div class="badge badge-secondary p-1 mr-2">13+</div>
-                                          <span class="text-white">2h 20m</span>
-                                       </div>
-                                       <div class="hover-buttons">
-                                          <a href="movie-details.html" class="btn btn-hover" tabindex="0">
-                                          <i class="fa fa-play mr-1" aria-hidden="true"></i> Play Now
-                                          </a>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </li>
-                              <li>
-                                 <div class="block-images position-relative">
-                                    <a href="movie-details.html">
-                                    <img src="images/top-10/03.jpg" class="img-fluid w-100" alt="">
-                                    </a>
-                                    <div class="block-description">
-                                       <h5>Hubby Kubby</h5>
-                                       <div class="movie-time d-flex align-items-center my-2">
-                                          <div class="badge badge-secondary p-1 mr-2">9+</div>
-                                          <span class="text-white">2h 40m</span>
-                                       </div>
-                                       <div class="hover-buttons">
-                                          <a href="movie-details.html" class="btn btn-hover" tabindex="0">
-                                          <i class="fa fa-play mr-1" aria-hidden="true"></i> Play Now
-                                          </a>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </li>
-                              <li>
-                                 <div class="block-images position-relative">
-                                    <a href="movie-details.html">
-                                    <img src="images/top-10/04.jpg" class="img-fluid w-100" alt="">
-                                    </a>
-                                    <div class="block-description">
-                                       <h5>Open Dead Shot</h5>
-                                       <div class="movie-time d-flex align-items-center my-2">
-                                          <div class="badge badge-secondary p-1 mr-2">16+</div>
-                                          <span class="text-white">1h 40m</span>
-                                       </div>
-                                       <div class="hover-buttons">
-                                          <a href="movie-details.html" class="btn btn-hover" tabindex="0">
-                                          <i class="fa fa-play mr-1" aria-hidden="true"></i> Play Now
-                                          </a>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </li>
-                              <li>
-                                 <div class="block-images position-relative">
-                                    <a href="movie-details.html">
-                                    <img src="images/top-10/05.jpg" class="img-fluid w-100" alt="">
-                                    </a>
-                                    <div class="block-description">
-                                       <h5>Jumbo Queen</h5>
-                                       <div class="movie-time d-flex align-items-center my-2">
-                                          <div class="badge badge-secondary p-1 mr-2">15+</div>
-                                          <span class="text-white">3h</span>
-                                       </div>
-                                       <div class="hover-buttons">
-                                          <a href="movie-details.html" class="btn btn-hover" tabindex="0">
-                                          <i class="fa fa-play mr-1" aria-hidden="true"></i> Play Now
-                                          </a>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </li>
-                              <li>
-                                 <div class="block-images position-relative">
-                                    <a href="movie-details.html">
-                                    <img src="images/top-10/06.jpg" class="img-fluid w-100" alt="">
-                                    </a>
-                                    <div class="block-description">
-                                       <h5>The Lost Journey</h5>
-                                       <div class="movie-time d-flex align-items-center my-2">
-                                          <div class="badge badge-secondary p-1 mr-2">20+</div>
-                                          <span class="text-white">2h 15m</span>
-                                       </div>
-                                       <div class="hover-buttons">
-                                          <a href="movie-details.html" class="btn btn-hover" tabindex="0">
-                                          <i class="fa fa-play mr-1" aria-hidden="true"></i> Play Now
-                                          </a>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </li>
+                                 </li>
+                              <% } ) %>
+                           
                            </ul>
                         </div>
                      </div>
                   </div>
                </div>
-            </div>
-         </section>
+            </section>
+         <% } %>
+         <% if(crimeMovies.length != 0){ %> 
          <section id="iq-suggestede" class="s-margin">
             <div class="container-fluid">
                <div class="row">
                   <div class="col-sm-12 overflow-hidden">
                      <div class="iq-main-header d-flex align-items-center justify-content-between">                       
-                        <h4 class="main-title"><a href="show-category.html">Suggested For You</a></h4>                       
+                        <h4 class="main-title"><a href="show-category.html">Crime Movies</a></h4>                       
                      </div>
                      <div class="suggestede-contens">
                         <ul class="list-inline favorites-slider row p-0 mb-0">
-                           <li class="slide-item">
-                              <a href="movie-details.html">
-                                 <div class="block-images position-relative">
-                                    <div class="img-box">
-                                       <img src="images/suggested/01.jpg" class="img-fluid" alt="">
-                                    </div>
-                                    <div class="block-description">
-                                       <h6>Blood Block</h6>
-                                       <div class="movie-time d-flex align-items-center my-2">
-                                          <div class="badge badge-secondary p-1 mr-2">11+</div>
-                                          <span class="text-white">2h 30m</span>
+                           <% crimeMovies.forEach( eachMovie => {%> 
+                              <li class="slide-item">
+                                 <a href="/movieDetail-<%=eachMovie.id%>">
+                                    <div class="block-images position-relative">
+                                       <div class="img-box">
+                                          <% var imgLink = eachMovie.images[0] %>
+                                          <% imgLink = imgLink.slice(7,imgLink.length) %>
+                                          <img src="<%=imgLink%>" class="img-fluid" alt="">
                                        </div>
-                                       <div class="hover-buttons">
-                                          <span class="btn btn-hover"><i class="fa fa-play mr-1" aria-hidden="true"></i>
-                                          Play Now</span>
+                                       <div class="block-description">
+                                          <h6> <%= eachMovie.title %> </h6>
+                                          <div class="movie-time d-flex align-items-center my-2">
+                                             <div class="badge badge-secondary p-1 mr-2"><%= eachMovie.forVIPOnly %> </div>
+                                             <span class="text-white"> <%= eachMovie.movieDuration%> </span>
+                                          </div>
+                                          <div class="hover-buttons">
+                                             <span class="btn btn-hover"><i class="fa fa-play mr-1" aria-hidden="true"></i>
+                                             Play Now</span>
+                                          </div>
                                        </div>
-                                    </div>
-                                    <div class="block-social-info">
-                                       <ul class="list-inline p-0 m-0 music-play-lists">
-                                          <li><span><i class="ri-volume-mute-fill"></i></span></li>
-                                          <li><span><i class="ri-heart-fill"></i></span></li>
-                                          <li><span><i class="ri-add-line"></i></span></li>
-                                       </ul>
-                                    </div>
-                                 </div>
-                              </a>
-                           </li>
-                           <li class="slide-item">
-                              <a href="show-details.html">
-                                 <div class="block-images position-relative">
-                                    <div class="img-box">
-                                       <img src="images/suggested/02.jpg" class="img-fluid" alt="">
-                                    </div>
-                                    <div class="block-description">
-                                       <h6>Mission Moon</h6>
-                                       <div class="movie-time d-flex align-items-center my-2">
-                                          <div class="badge badge-secondary p-1 mr-2">9+</div>
-                                          <span class="text-white">2 Seasons</span>
-                                       </div>
-                                       <div class="hover-buttons">
-                                          <span class="btn btn-hover"><i class="fa fa-play mr-1" aria-hidden="true"></i>
-                                          Play Now</span>
+                                       <div class="block-social-info">
+                                          <ul class="list-inline p-0 m-0 music-play-lists">
+                                             <li><span><i class="ri-volume-mute-fill"></i></span></li>
+                                             <li><span><i class="ri-heart-fill"></i></span></li>
+                                             <li><span><i class="ri-add-line"></i></span></li>
+                                          </ul>
                                        </div>
                                     </div>
-                                    <div class="block-social-info">
-                                       <ul class="list-inline p-0 m-0 music-play-lists">
-                                          <li><span><i class="ri-volume-mute-fill"></i></span></li>
-                                          <li><span><i class="ri-heart-fill"></i></span></li>
-                                          <li><span><i class="ri-add-line"></i></span></li>
-                                       </ul>
-                                    </div>
-                                 </div>
-                              </a>
-                           </li>
-                           <li class="slide-item">
-                              <a href="movie-details.html">
-                                 <div class="block-images position-relative">
-                                    <div class="img-box">
-                                       <img src="images/suggested/03.jpg" class="img-fluid" alt="">
-                                    </div>
-                                    <div class="block-description">
-                                       <h6>Unknown Land</h6>
-                                       <div class="movie-time d-flex align-items-center my-2">
-                                          <div class="badge badge-secondary p-1 mr-2">17+</div>
-                                          <span class="text-white">2h 30m</span>
-                                       </div>
-                                       <div class="hover-buttons">
-                                          <span class="btn btn-hover"><i class="fa fa-play mr-1" aria-hidden="true"></i>
-                                          Play Now</span>
-                                       </div>
-                                    </div>
-                                    <div class="block-social-info">
-                                       <ul class="list-inline p-0 m-0 music-play-lists">
-                                          <li><span><i class="ri-volume-mute-fill"></i></span></li>
-                                          <li><span><i class="ri-heart-fill"></i></span></li>
-                                          <li><span><i class="ri-add-line"></i></span></li>
-                                       </ul>
-                                    </div>
-                                 </div>
-                              </a>
-                           </li>
-                           <li class="slide-item">
-                              <a href="show-details.html">
-                                 <div class="block-images position-relative">
-                                    <div class="img-box">
-                                       <img src="images/suggested/04.jpg" class="img-fluid" alt="">
-                                    </div>
-                                    <div class="block-description">
-                                       <h6>Friends</h6>
-                                       <div class="movie-time d-flex align-items-center my-2">
-                                          <div class="badge badge-secondary p-1 mr-2">19+</div>
-                                          <span class="text-white">3 Seasons</span>
-                                       </div>
-                                       <div class="hover-buttons">
-                                          <span class="btn btn-hover"><i class="fa fa-play mr-1" aria-hidden="true"></i>
-                                          Play Now</span>
-                                       </div>
-                                    </div>
-                                    <div class="block-social-info">
-                                       <ul class="list-inline p-0 m-0 music-play-lists">
-                                          <li><span><i class="ri-volume-mute-fill"></i></span></li>
-                                          <li><span><i class="ri-heart-fill"></i></span></li>
-                                          <li><span><i class="ri-add-line"></i></span></li>
-                                       </ul>
-                                    </div>
-                                 </div>
-                              </a>
-                           </li>
-                           <li class="slide-item">
-                              <a href="movie-details.html">
-                                 <div class="block-images position-relative">
-                                    <div class="img-box">
-                                       <img src="images/suggested/05.jpg" class="img-fluid" alt="">
-                                    </div>
-                                    <div class="block-description">
-                                       <h6>Inside the Sea</h6>
-                                       <div class="movie-time d-flex align-items-center my-2">
-                                          <div class="badge badge-secondary p-1 mr-2">13+</div>
-                                          <span class="text-white">2h 40m</span>
-                                       </div>
-                                       <div class="hover-buttons">
-                                          <span class="btn btn-hover"><i class="fa fa-play mr-1" aria-hidden="true"></i>
-                                          Play Now</span>
-                                       </div>
-                                    </div>
-                                    <div class="block-social-info">
-                                       <ul class="list-inline p-0 m-0 music-play-lists">
-                                          <li><span><i class="ri-volume-mute-fill"></i></span></li>
-                                          <li><span><i class="ri-heart-fill"></i></span></li>
-                                          <li><span><i class="ri-add-line"></i></span></li>
-                                       </ul>
-                                    </div>
-                                 </div>
-                              </a>
-                           </li>
+                                 </a>
+                              </li>
+                           <% } ) %>
+                          
                         </ul>
                      </div>
                   </div>
                </div>
             </div>
          </section>
+         <% } %>
+         <% if(dramaMovies.length != 0){ %> 
+         <section id="iq-suggestede" class="s-margin">
+            <div class="container-fluid">
+               <div class="row">
+                  <div class="col-sm-12 overflow-hidden">
+                     <div class="iq-main-header d-flex align-items-center justify-content-between">                       
+                        <h4 class="main-title"><a href="show-category.html">Drama Movies</a></h4>                       
+                     </div>
+                     <div class="suggestede-contens">
+                        <ul class="list-inline favorites-slider row p-0 mb-0">
+                           <% dramaMovies.forEach( eachMovie => {%> 
+                              <li class="slide-item">
+                                 <a href="/movieDetail-<%=eachMovie.id%>">
+                                    <div class="block-images position-relative">
+                                       <div class="img-box">
+                                          <% var imgLink = eachMovie.images[0] %>
+                                          <% imgLink = imgLink.slice(7,imgLink.length) %>
+                                          <img src="<%=imgLink%>" class="img-fluid" alt="">
+                                       </div>
+                                       <div class="block-description">
+                                          <h6> <%= eachMovie.title %> </h6>
+                                          <div class="movie-time d-flex align-items-center my-2">
+                                             <div class="badge badge-secondary p-1 mr-2"><%= eachMovie.forVIPOnly %> </div>
+                                             <span class="text-white"> <%= eachMovie.movieDuration%> </span>
+                                          </div>
+                                          <div class="hover-buttons">
+                                             <span class="btn btn-hover"><i class="fa fa-play mr-1" aria-hidden="true"></i>
+                                             Play Now</span>
+                                          </div>
+                                       </div>
+                                       <div class="block-social-info">
+                                          <ul class="list-inline p-0 m-0 music-play-lists">
+                                             <li><span><i class="ri-volume-mute-fill"></i></span></li>
+                                             <li><span><i class="ri-heart-fill"></i></span></li>
+                                             <li><span><i class="ri-add-line"></i></span></li>
+                                          </ul>
+                                       </div>
+                                    </div>
+                                 </a>
+                              </li>
+                           <% } ) %>
+                          
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <% } %>
+         <% if(horrorMovies.length != 0){ %> 
+         <section id="iq-suggestede" class="s-margin">
+            <div class="container-fluid">
+               <div class="row">
+                  <div class="col-sm-12 overflow-hidden">
+                     <div class="iq-main-header d-flex align-items-center justify-content-between">                       
+                        <h4 class="main-title"><a href="show-category.html">Horror Movies</a></h4>                       
+                     </div>
+                     <div class="suggestede-contens">
+                        <ul class="list-inline favorites-slider row p-0 mb-0">
+                           <% horrorMovies.forEach( eachMovie => {%> 
+                              <li class="slide-item">
+                                 <a href="/movieDetail-<%=eachMovie.id%>">
+                                    <div class="block-images position-relative">
+                                       <div class="img-box">
+                                          <% var imgLink = eachMovie.images[0] %>
+                                          <% imgLink = imgLink.slice(7,imgLink.length) %>
+                                          <img src="<%=imgLink%>" class="img-fluid" alt="">
+                                       </div>
+                                       <div class="block-description">
+                                          <h6> <%= eachMovie.title %> </h6>
+                                          <div class="movie-time d-flex align-items-center my-2">
+                                             <div class="badge badge-secondary p-1 mr-2"><%= eachMovie.forVIPOnly %> </div>
+                                             <span class="text-white"> <%= eachMovie.movieDuration%> </span>
+                                          </div>
+                                          <div class="hover-buttons">
+                                             <span class="btn btn-hover"><i class="fa fa-play mr-1" aria-hidden="true"></i>
+                                             Play Now</span>
+                                          </div>
+                                       </div>
+                                       <div class="block-social-info">
+                                          <ul class="list-inline p-0 m-0 music-play-lists">
+                                             <li><span><i class="ri-volume-mute-fill"></i></span></li>
+                                             <li><span><i class="ri-heart-fill"></i></span></li>
+                                             <li><span><i class="ri-add-line"></i></span></li>
+                                          </ul>
+                                       </div>
+                                    </div>
+                                 </a>
+                              </li>
+                           <% } ) %>
+                          
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <% } %>
+         <% if(romanceMovies.length != 0){ %> 
+         <section id="iq-suggestede" class="s-margin">
+            <div class="container-fluid">
+               <div class="row">
+                  <div class="col-sm-12 overflow-hidden">
+                     <div class="iq-main-header d-flex align-items-center justify-content-between">                       
+                        <h4 class="main-title"><a href="show-category.html">Romance Movies</a></h4>                       
+                     </div>
+                     <div class="suggestede-contens">
+                        <ul class="list-inline favorites-slider row p-0 mb-0">
+                           <% romanceMovies.forEach( eachMovie => {%> 
+                              <li class="slide-item">
+                                 <a href="/movieDetail-<%=eachMovie.id%>">
+                                    <div class="block-images position-relative">
+                                       <div class="img-box">
+                                          <% var imgLink = eachMovie.images[0] %>
+                                          <% imgLink = imgLink.slice(7,imgLink.length) %>
+                                          <img src="<%=imgLink%>" class="img-fluid" alt="">
+                                       </div>
+                                       <div class="block-description">
+                                          <h6> <%= eachMovie.title %> </h6>
+                                          <div class="movie-time d-flex align-items-center my-2">
+                                             <div class="badge badge-secondary p-1 mr-2"><%= eachMovie.forVIPOnly %> </div>
+                                             <span class="text-white"> <%= eachMovie.movieDuration%> </span>
+                                          </div>
+                                          <div class="hover-buttons">
+                                             <span class="btn btn-hover"><i class="fa fa-play mr-1" aria-hidden="true"></i>
+                                             Play Now</span>
+                                          </div>
+                                       </div>
+                                       <div class="block-social-info">
+                                          <ul class="list-inline p-0 m-0 music-play-lists">
+                                             <li><span><i class="ri-volume-mute-fill"></i></span></li>
+                                             <li><span><i class="ri-heart-fill"></i></span></li>
+                                             <li><span><i class="ri-add-line"></i></span></li>
+                                          </ul>
+                                       </div>
+                                    </div>
+                                 </a>
+                              </li>
+                           <% } ) %>
+                          
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <% } %>
          <section id="parallex" class="parallax-window">
             <div class="container-fluid h-100">
                <div class="row align-items-center justify-content-center h-100 parallaxt-details">
@@ -481,14 +416,14 @@
                         </div>
                         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p>
                         <div class="parallax-buttons">
-                           <a href="movie-details.html" class="btn btn-hover">Play Now</a>
-                           <a href="movie-details.html" class="btn btn-link">More details</a>
+                           <a href="#" class="btn btn-hover">Play Now</a>
+                           <a href="#" class="btn btn-link">More details</a>
                         </div>
                      </div>
                   </div>
                   <div class="col-lg-8">
                      <div class="parallax-img">
-                        <a href="movie-details.html">
+                        <a href="#">
                         	<img src="images/parallax/p1.jpg" class="img-fluid w-100" alt="bailey">
                         </a>
                      </div>
