@@ -1,7 +1,8 @@
 const User = require("../user/User")
 
-myScreens =  async (req,res) => {
+selectScreenFunc =  async (req,res) => {
     var userId = req.user._id
+    var { screenNumber } = req.params
     try {
         var user = await User.findById(userId)
         if(!user){
@@ -10,17 +11,15 @@ myScreens =  async (req,res) => {
             res.redirect("/")
         }else{
             var { currentPlan } = user 
-            var {screens} = currentPlan
-            var currentDate = new Date()
-            if( user.isVIP == false || currentDate > currentPlan.expiryDate ){
-                user.isVIP = false
-                user.currentPlan = {}
+            var { screens } = currentPlan
+            if( screens[screenNumber].pin == req.body.enteredPin ){
+                user.screenSelected = (screenNumber)
                 var savedUser = await user.save()
-                var updatedUser = await User.findOneAndUpdate(userId,savedUser)
-                req.flash("error","Sorry , your plan has expired")
-                res.redirect("/plans")
+                var updatedUser = await User.findByIdAndUpdate(userId,savedUser)
+                res.redirect("/index")
             }else{
-                res.render("myScreens",{ user , currentPlan, screens, title : "My Screens" })
+                req.flash("error","Incorrect pin for screen " + screens[screenNumber].name)
+                res.redirect("selectScreen")
             }
         }
        
@@ -31,4 +30,4 @@ myScreens =  async (req,res) => {
     }
    
 } 
-module.exports = myScreens
+module.exports = selectScreenFunc

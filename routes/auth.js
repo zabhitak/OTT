@@ -88,9 +88,15 @@ router.get("/sessionExpired",(req,res) => {
     res.redirect("/signin")
 })
 
-router.get("/logout", (req,res) => { 
+router.get("/logout",async (req,res) => { 
     var redirectTo = '/'
     if(req.user){
+        var userId = req.user._id
+        var user = await User.findById(userId)
+        if(user){
+            user.screenSelected = "-1"
+            await user.save()
+        }
         req.logout();
         req.flash("success","SUCCESSFULLY LOGGED YOU OUT")
         res.redirect(`${redirectTo}`)

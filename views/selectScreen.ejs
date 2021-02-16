@@ -1,0 +1,58 @@
+
+<%- include('./partials/header') %>
+<%- include('./partials/topMenu') %>
+
+ <section class="m-profile">
+    <div class="container">
+        <h4 class="main-title mb-4">Select Screen</h4>
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="sign-user_card">
+                    <div class="table-responsive pricing pt-2">
+                        <table id="my-table" class="table">
+                            <thead>
+                                <tr class="row">
+                                    <th class="text-center prc-wrap h3 col-lg-4 col-sm-12"> </th>
+                                    <th class="text-center prc-wrap col-lg-4 col-sm-12">
+                                        <div class="prc-box">
+                                            <div class="h3 pt-4 text-white"><small> PIN </small></div>
+                                            <span class="type">Enter</span>
+                                        </div>
+                                    </th>
+                                    <th class="col-lg-4 col-sm-12" ></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% var count = 0; %>
+                                <% screens.forEach( eachScreen => { %> 
+                                <tr class="row">
+                                    <th class="text-center h3 col-lg-4 col-sm-12" scope="row"> <%= eachScreen.name %>  </th>
+                                    <form action="/selectScreens-<%=count%>" method="POST" class="col-lg-8 col-sm-12">
+                                        <th class="text-center prc-wrap col-lg-4 col-sm-12">
+                                            <div class="prc-box">
+                                                <div class="iq-card-body">
+                                                    <input type="text" name="enteredPin" required class="form-control" id="name">
+                                                </div>
+                                            </div>
+                                        </th>
+                                        <th class="text-center col-lg-4 col-sm-12">
+                                                <button type="submit" class="btn btn-hover mt-3">Enter</button>
+                                            </form>
+                                        </th>
+                                    </form>
+                                </tr>
+                                <% count = count + 1 %>
+                                <% } ) %>
+                            </tbody>
+                        </table>
+                        <%- include('./partials/flashMessage') %>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<%- include('./partials/footer') %>

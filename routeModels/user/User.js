@@ -49,7 +49,10 @@ const UserSchema = mongoose.Schema({
         }],
         default : ""
     },
-    
+    screenSelected : {
+        type : String,
+        default : "-1"
+    }
 })
  
 

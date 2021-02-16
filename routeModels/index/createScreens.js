@@ -11,13 +11,13 @@ createScreens =  async (req,res) => {
         }else{
             var { currentPlan } = user 
             var currentDate = new Date()
-            if( user.isVIP == false || currentDate < currentPlan.expiryDate ){
+            if( user.isVIP == false || currentDate > currentPlan.expiryDate ){
                 user.isVIP = false
                 user.currentPlan = {}
                 var savedUser = await user.save()
                 var updatedUser = await User.findOneAndUpdate(userId,savedUser)
                 req.flash("error","Sorry , your plan has expired")
-                res.redirect("/index")
+                res.redirect("/plans")
             }else if( currentPlan.screens.length != 0 ){
                 req.flash("success" ,"You have already created screens")
                 res.redirect("/myScreens")
