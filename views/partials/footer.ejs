@@ -73,7 +73,21 @@
      <script src="js/slick-animation.min.js"></script>
      <!-- Custom JS-->
      <script src="js/custom.js"></script>
+
+     <script>
+      var video = $('#video');
+      $(video).on('canplay', function () {
+        $(video)
+          .mouseenter(function () {
+            $(this).get(0).play();
+            
+          })
+          .mouseleave(function () {
+            $(this).get(0).pause();
+          });
+      });
+    </script>
+
   </body>
 
-<!-- Mirrored from iqonic.design/themes/streamitnew/frontend/html/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 17 Jan 2021 08:41:23 GMT -->
 </html>
