@@ -10,7 +10,7 @@ myProducts =  async (req,res) => {
         var user = await User.findById(userId)
         if(req.user.role == "User"){ 
             var currentDate = new Date()
-            if(user.isVIP == true && currentDate <= user.currentPlan.expiryDate ){
+            if((user.isVIP == true && currentDate <= user.currentPlan.expiryDate) || user.parent != null  ){
                 res.render("movieDetail",{ movie , title : movie.title, user : req.user,requested : false })
             }else{
                 user.isVIP = false

@@ -256,26 +256,31 @@
                                            </div>
                                         </div>
                                      </a>
-                                     <a href="/createScreens" class="iq-sub-card setting-dropdown">
-                                       <div class="media align-items-center">
-                                          <div class="right-icon">
-                                             <i class="ri-settings-4-line text-primary"></i>
+                                     <% if( user.isVIP == true && user.currentPlan.screens.length == 0  ){ %> 
+                                       <a href="/createScreens" class="iq-sub-card setting-dropdown">
+                                          <div class="media align-items-center">
+                                             <div class="right-icon">
+                                                <i class="ri-settings-4-line text-primary"></i>
+                                             </div>
+                                             <div class="media-body ml-3">
+                                                <h6 class="mb-0 ">Create Screens</h6>
+                                             </div>
                                           </div>
-                                          <div class="media-body ml-3">
-                                             <h6 class="mb-0 ">Create Screens</h6>
+                                       </a>
+                                    <% } %>
+                                    <% if(user.parent == null && user.currentPlan.screens.length == 0 ){ %> 
+                                       <a href="/myScreens" class="iq-sub-card setting-dropdown">
+                                          <div class="media align-items-center">
+                                             <div class="right-icon">
+                                                <i class="ri-settings-4-line text-primary"></i>
+                                             </div>
+                                             <div class="media-body ml-3">
+                                                <h6 class="mb-0 ">My Screens</h6>
+                                             </div>
                                           </div>
-                                       </div>
-                                    </a>
-                                    <a href="/myScreens" class="iq-sub-card setting-dropdown">
-                                       <div class="media align-items-center">
-                                          <div class="right-icon">
-                                             <i class="ri-settings-4-line text-primary"></i>
-                                          </div>
-                                          <div class="media-body ml-3">
-                                             <h6 class="mb-0 ">My Screens</h6>
-                                          </div>
-                                       </div>
-                                    </a>
+                                       </a>
+                                    <% } %>
+                                    
                                      <a href="/logout" class="iq-sub-card setting-dropdown">
                                         <div class="media align-items-center">
                                            <div class="right-icon">

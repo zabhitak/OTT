@@ -1,5 +1,7 @@
 var User = require("../user/User")
 var Product = require("../admin/product/Product")
+
+
 indexRoute = async (req,res) => {
   var allMovies = await Product.find({})
     User.findById(req.user._id)
@@ -16,7 +18,7 @@ indexRoute = async (req,res) => {
               res.redirect("/admin/index")
             }else{
               var currentDate = new Date()
-              if(user.isVIP == true && currentDate <= user.currentPlan.expiryDate && user.screenSelected == "-1" ){
+              if(user.isVIP == true && currentDate <= user.currentPlan.expiryDate ){
                 res.redirect("selectScreen")
               }else{
                 var { movies,requestedMovies } = user

@@ -10,11 +10,10 @@ purchasePlan =  async (req,res) => {
             req.flash("error","Not able to fetch data from database")
             res.redirect("/")
         }else{
-            var planName = "",planPrice = "$",numScreens,
-            purchaseDate = new Date(), 
-            tempDate = new Date(),
-            screens = []
-            var expiryDate = new Date( tempDate.setMonth(tempDate.getMonth()+1)) 
+            var planName = "",planPrice = "$",numScreens
+            var purchaseDate = new Date()
+            var tempDate = new Date()
+            var expiryDate = new Date(tempDate.setMonth(tempDate.getMonth()+1)) 
             if( planNum == 1 ){
                 planName = "Basic"
                 planPrice += "19"
@@ -34,24 +33,25 @@ purchasePlan =  async (req,res) => {
 
             // db work
             planPrice += "/Per month"
-            user.isVIP = true
             var newPlan = { 
                 planName,
                 planPrice,
                 numScreens,
                 purchaseDate,
                 expiryDate,
-                screens 
+                screens : [] 
             }
+            user.isVIP = true
             user.currentPlan = newPlan
             var savedUser = await user.save()
-            var updatedUser = await User.findOneAndUpdate(userId,savedUser)
-            req.flash("success",planName + " successfully purchased")
+            var updatedUser = await User.findByIdAndUpdate(userId,savedUser)
+            req.flash("success"," successfully purchased")
             res.redirect('createScreens')
         }
        
     } catch (error) {
         console.log(error)
+        console.log("error yha h purchase plan me line 55")
         req.flash("error","Not able to fetch data from database")
         res.redirect("/")
     }

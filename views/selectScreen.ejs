@@ -1,4 +1,3 @@
-
 <%- include('./partials/header') %>
 <%- include('./partials/topMenu') %>
 
@@ -27,16 +26,28 @@
                                 <% screens.forEach( eachScreen => { %> 
                                 <tr class="row">
                                     <th class="text-center h3 col-lg-4 col-sm-12" scope="row"> <%= eachScreen.name %>  </th>
-                                    <form action="/selectScreens-<%=count%>" method="POST" class="col-lg-8 col-sm-12">
+                                    <form action="/signin-<%=count%>" method="POST" class="col-lg-8 col-sm-12">
                                         <th class="text-center prc-wrap col-lg-4 col-sm-12">
                                             <div class="prc-box">
                                                 <div class="iq-card-body">
-                                                    <input type="text" name="enteredPin" required class="form-control" id="name">
+                                                    <% var username = user.username + count %>
+                                                    <input name="username" type="hidden" value="<%=username%>" />
+                                                    <% if(!eachScreen.inUse){ %> 
+                                                        <input type="text" name="password" required class="form-control" id="name">
+                                                    <% }else{ %> 
+                                                            Already In Use
+                                                    <% } %>
                                                 </div>
                                             </div>
                                         </th>
                                         <th class="text-center col-lg-4 col-sm-12">
+                                            <% if(!eachScreen.inUse){ %> 
                                                 <button type="submit" class="btn btn-hover mt-3">Enter</button>
+                                                <% }else{ %> 
+                                                </form>
+                                                <form action="/logoutScreen-<%=count%>" method="POST">
+                                                <button type="submit" class="btn btn-secondary mb-3 "> Not Able To Access ? </a>
+                                            <% } %>
                                             </form>
                                         </th>
                                     </form>
@@ -46,13 +57,11 @@
                             </tbody>
                         </table>
                         <%- include('./partials/flashMessage') %>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
 
 <%- include('./partials/footer') %>

@@ -38,7 +38,6 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <!-- <i class="ri-check-line ri-2x"></i> -->
                                     <th class="text-center" scope="row">Screens</th>
                                     <td class="text-center child-cell">1</td>
                                     <td class="text-center child-cell active">2</td>
@@ -47,22 +46,58 @@
                                 <tr>
                                     <td class="text-center"><i class="ri-close-line i_close"></i></td>
                                     <td class="text-center">
-                                        <form action="purchasePlan-1" method="POST">
-                                            <button type="submit" class="btn btn-hover mt-3">Purchase</button>
-                                        </form>
+                                        <% if( user.parent == null && ( user.currentPlan.screens.length == 0  ) ){ %> 
+                                            <form action="purchasePlan-1" method="POST">
+                                                <button type="submit" class="btn btn-hover mt-3">Purchase</button>
+                                            </form>
+                                        <% }else{ %> 
+                                            <% if(user.parent != null && user.currentPlan.planName == "Basic" ){ %> 
+                                                <a href="#"  class="btn btn-success mb-3 ">
+                                                    Purchased <i class="ri-check-line ri-2x"></i>
+                                                </a>
+                                            <% }else if(user.currentPlan.planName == "Basic") { %>
+                                                <a href="#"  class="btn btn-success mb-3 ">
+                                                    Purchased <i class="ri-check-line ri-2x"></i>
+                                                </a>
+                                            <% } %>
+                                        <% } %>
+                                        
                                     </td>
                                     <td class="text-center">
+                                        <% if( user.parent == null && ( user.currentPlan.screens.length == 0  ) ){ %> 
                                         <form action="purchasePlan-2" method="POST">
                                             <button type="submit" class="btn btn-hover mt-3">Purchase</button>
                                         </form>
+                                        <% }else{ %> 
+                                            <% if(user.parent != null && user.currentPlan.planName == "Standard"){ %> 
+                                                <a href="#"  class="btn btn-success mb-3 ">
+                                                    Purchased <i class="ri-check-line ri-2x"></i>
+                                                </a>
+                                            <% }else if(user.currentPlan.planName == "Standard") { %>
+                                                <a href="#"  class="btn btn-success mb-3 ">
+                                                    Purchased <i class="ri-check-line ri-2x"></i>
+                                                </a>
+                                            <% } %>
+                                        <% } %>
                                     </td>
                                     <td class="text-center">
+                                        <% if( user.parent == null && ( user.currentPlan.screens.length == 0  ) ){ %> 
                                         <form action="purchasePlan-3" method="POST">
                                             <button type="submit" class="btn btn-hover mt-3">Purchase</button>
                                         </form>
+                                        <% }else{ %> 
+                                            <% if(user.parent != null && user.currentPlan.planName == "Premium"){ %> 
+                                                <a href="#"  class="btn btn-success mb-3 ">
+                                                    Purchased <i class="ri-check-line ri-2x"></i>
+                                                </a>
+                                            <% }else if(user.currentPlan.planName == "Premium") { %>
+                                                <a href="#"  class="btn btn-success mb-3 ">
+                                                    Purchased <i class="ri-check-line ri-2x"></i>
+                                                </a>
+                                            <% } %>
+                                        <% } %>
                                     </td>
                                 </tr>
-
                             </tbody>
                         </table>
                         <%- include('./partials/flashMessage') %>

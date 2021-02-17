@@ -4,13 +4,11 @@ var passportLocalMongoose = require("passport-local-mongoose")
 const UserSchema = mongoose.Schema({
     username : {
         type : String,
-        required : true,
-        unique : true
+        default : ""
     },
     email : {
         type : String,
-        required : true,
-        unique : true
+        default : ""
     },
     password : {
         type : String,
@@ -46,13 +44,29 @@ const UserSchema = mongoose.Schema({
         screens : [{
             name : String,
             pin : String,
+            inUse : Boolean,
+            user : {
+                type : mongoose.Schema.Types.ObjectId,
+                ref : "User", 
+            }
         }],
         default : ""
     },
     screenSelected : {
         type : String,
         default : "-1"
-    }
+    },
+    parent : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "User",
+    },
+    child : [
+        {
+            type : mongoose.Schema.Types.ObjectId,
+            ref : "User",
+            default : []
+        },
+    ],
 })
  
 

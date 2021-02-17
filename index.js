@@ -8,14 +8,13 @@ const passport = require('passport');
 const LocalStratergy = require('passport-local');
 
 const dotenv = require('dotenv');
-
-
 dotenv.config();
 
 const keys = require('./keys');
 const MONGODB_URI = keys.MONGODB_URI;
 
 const app = express();
+
 
 
 var http = require("http").createServer(app);

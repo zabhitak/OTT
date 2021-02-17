@@ -11,6 +11,7 @@ const verifyOtpFunc = require(`${commonPath}verifyOtpFunc`)
 
 const middleware = require("../middleware")
 
+
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const GOOGLE_CLIENT_ID = '210498558473-m9adhkqreen1mgubu1ojgk2ohqlt5buk.apps.googleusercontent.com';
 const GOOGLE_CLIENT_SECRET = '8uQTRx0bVpcJGoIKU06dtP3o';
@@ -57,8 +58,14 @@ router.get("/signin",(req,res ) => {
 router.post("/signin",passport.authenticate("user",{
     failureRedirect : "/wrongCredentials"
 }),middleware.isLoggedIn, (req,res) => {
-    res.redirect("/index")
+    if(req.user.parent != null){
+        req.logout()
+        res.redirect("/wrongCredentials")
+    }else{
+        res.redirect("/index")
+    }
 })
+
 
 router.get("/signup",(req,res ) => {
     if(req.user){
@@ -93,9 +100,15 @@ router.get("/logout",async (req,res) => {
     if(req.user){
         var userId = req.user._id
         var user = await User.findById(userId)
-        if(user){
-            user.screenSelected = "-1"
-            await user.save()
+        if(user.parent != null){
+            var {parent} = user
+            var parentUser = await User.findById(parent)
+            var { screenSelected } = user
+            var {currentPlan} = parentUser
+            currentPlan.screens[screenSelected].inUse = false
+            parentUser.currentPlan = currentPlan
+            var savedParent = await parentUser.save()
+            var updatedUser = await User.findByIdAndUpdate(parent,savedParent)
         }
         req.logout();
         req.flash("success","SUCCESSFULLY LOGGED YOU OUT")

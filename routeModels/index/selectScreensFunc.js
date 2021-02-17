@@ -1,5 +1,7 @@
 const User = require("../user/User")
 
+const passport = require("passport")
+
 selectScreenFunc =  async (req,res) => {
     var userId = req.user._id
     var { screenNumber } = req.params
@@ -12,10 +14,16 @@ selectScreenFunc =  async (req,res) => {
         }else{
             var { currentPlan } = user 
             var { screens } = currentPlan
-            if( screens[screenNumber].pin == req.body.enteredPin ){
+            if( screens[screenNumber].pin == req.body.password ){
                 user.screenSelected = (screenNumber)
+                currentPlan.screens[screenNumber].inUse = true
+                user.currentPlan = currentPlan
                 var savedUser = await user.save()
                 var updatedUser = await User.findByIdAndUpdate(userId,savedUser)
+                passport.authenticate("user",{
+                    failureRedirect : "/wrongCredentials"
+                })
+                
                 res.redirect("/index")
             }else{
                 req.flash("error","Incorrect pin for screen " + screens[screenNumber].name)

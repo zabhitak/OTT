@@ -15,6 +15,10 @@ myScreens =  async (req,res) => {
             if( user.isVIP == false || currentDate > currentPlan.expiryDate ){
                 user.isVIP = false
                 user.currentPlan = {}
+                var { child } = user
+                child.forEach( async childID => {
+                    var deleteChild = await User.findByIdAndDelete(childID)
+                });
                 var savedUser = await user.save()
                 var updatedUser = await User.findOneAndUpdate(userId,savedUser)
                 req.flash("error","Sorry , your plan has expired")

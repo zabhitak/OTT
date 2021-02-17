@@ -4,6 +4,7 @@ createScreens =  async (req,res) => {
     var userId = req.user._id
     try {
         var user = await User.findById(userId)
+        var {username} = user
         if(!user){
             console.log(error)
             req.flash("error","Not able to fetch data from database")
@@ -13,42 +14,75 @@ createScreens =  async (req,res) => {
             var {numScreens} = currentPlan
             numScreens = parseInt(numScreens)
             var screens = []
-            var num = Math.floor(10000 * Math.random())
+            var num = (Math.floor(10000 * Math.random()))
+            
             if(num < 1000){
                 num *= 10;
             }
+            num += ""
+            var {name1} = req.body
+            var newUser = await User.register({ username : username+"0" , parent : userId, currentPlan ,screenSelected : 0 }, num ) 
+         
+            await newUser.save()
+            user.child.push(newUser)
             screens.push({
-                name : req.body.name1,
-                pin : num
+                name : name1,
+                pin : num,
+                inUse : false,
+                user : newUser
             })
             if(req.body.name2){
-                num = Math.floor(10000 * Math.random())
+                num = (Math.floor(10000 * Math.random()))
+                
                 if(num < 1000){
                     num *= 10;
                 }
+                num += ""
+                var {name2} = req.body
+                var newUser2 = await User.register({ username : username+"1" , parent : userId, currentPlan ,screenSelected : 1 }, num ) 
+                await newUser2.save()
+                user.child.push(newUser2)
                 screens.push({
-                    name : req.body.name2,
-                    pin : num
+                    name : name2,
+                    pin : num,
+                    inUse : false,
+                    user : newUser2
                 })
             }
             if(req.body.name3){
-                num = Math.floor(10000 * Math.random())
+                num = (Math.floor(10000 * Math.random()))
+                
                 if(num < 1000){
                     num *= 10;
                 }
+                num += ""
+                var {name3} = req.body
+                var newUser3 = await User.register({ username : username+"2" , parent : userId, currentPlan ,screenSelected : 2 }, num ) 
+                await newUser3.save()
+                user.child.push(newUser3)
                 screens.push({
-                    name : req.body.name3,
-                    pin : num
+                    name : name3,
+                    pin : num,
+                    inUse : false,
+                    user : newUser3
                 })
             }
             if(req.body.name4){
-                num = Math.floor(10000 * Math.random())
+                num = (Math.floor(10000 * Math.random()))
+                
                 if(num < 1000){
                     num *= 10;
-                }
+                 }
+                num += ""
+                 var {name4} = req.body
+                var newUser4 = await User.register({ username : username+"3" , parent : userId, currentPlan ,screenSelected : 3 }, num ) 
+                await newUser4.save()
+                user.child.push(newUser4)
                 screens.push({
-                    name : req.body.name4,
-                    pin : num
+                    name : name4,
+                    pin : num,
+                    inUse : false,
+                    user : newUser4
                 })
             }
             currentPlan.screens = screens

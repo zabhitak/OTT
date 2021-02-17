@@ -33,7 +33,7 @@ const verifyOtpFunc = async (req,res) => {
 
                 const { username , email , password, role } = otpObject
                 
-                var newUser = await User.register({ username , email , role }, password ) 
+                var newUser = await User.register({ username , email , role, parent : null }, password ) 
              
                 await newUser.save()
               

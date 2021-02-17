@@ -1,6 +1,8 @@
 const express = require("express")
 const router = express.Router();
 
+const passport = require("passport")
+var User = require("../routeModels/user/User")
 const commonPath = "../routeModels/index/"
 
 const indexRoute = require(`${commonPath}indexRoute`)
@@ -17,8 +19,6 @@ const selectScreen = require(`${commonPath}selectScreen`)
 const selectScreensFunc = require(`${commonPath}selectScreensFunc`)
 
 const middleware = require("../middleware");
-
-const User = require("../routeModels/user/User")
 
 router.get('/', async (req,res) => {
     user = null
@@ -47,7 +47,46 @@ router.get("/createScreens",middleware.isLoggedIn,createScreens)
 router.post("/createScreens",middleware.isLoggedIn,createScreensFunc)
 router.get("/myScreens",middleware.isLoggedIn,myScreens)
 router.get("/selectScreen",middleware.isLoggedIn,selectScreen)
-router.post("/selectScreens-:screenNumber",middleware.isLoggedIn,selectScreensFunc)
 
+router.post("/signin-:screenNumber", passport.authenticate("user",{
+    failureRedirect : "/selectScreen",
+    failureFlash : "Sorry ... Wrong Pin !!!"
+}),middleware.isLoggedIn, async(req,res) => {
+    var userId = req.user._id
+    var { screenNumber } = req.params
+    var user = await User.findById(userId)
+    var { parent } = user
+    var parentUser = await User.findById(parent)
+    var { currentPlan } = parentUser
+    if(currentPlan.screens[screenNumber].pin != req.body.password ){
+        req.logout()
+        req.flash("error","Wrong Pin ... Login To Continue !!!")
+        res.redirect("/signin")
+    }else{
+        currentPlan.screens[screenNumber].inUse = true
+        parentUser.currentPlan = currentPlan
+        var savedParent = await parentUser.save()
+        var updatedUser = await User.findByIdAndUpdate(parent,savedParent)
+        res.redirect("/index")
+    }   
+})
+
+router.post("/logoutScreen-:screenNumber",middleware.isLoggedIn, async (req,res) => {
+    try {
+        var { screenNumber } = req.params 
+        var userId = req.user._id
+        var user = await User.findById(userId)
+        var {currentPlan} = user
+        currentPlan.screens[screenNumber].inUse = false
+        user.currentPlan = currentPlan
+        var savedUser = await user.save()
+        var updatedUser = await User.findByIdAndUpdate(userId,savedUser)
+        res.redirect('/')
+    } catch (error) {
+        console.log(error)
+        req.flash("error","Not able to fetch your data right now")
+        res.redirect("/selectScreen")
+    }
+})
 
 module.exports = router
