@@ -63,11 +63,17 @@ router.post("/signin-:screenNumber", passport.authenticate("user",{
         req.flash("error","Wrong Pin ... Login To Continue !!!")
         res.redirect("/signin")
     }else{
-        currentPlan.screens[screenNumber].inUse = true
-        parentUser.currentPlan = currentPlan
-        var savedParent = await parentUser.save()
-        var updatedUser = await User.findByIdAndUpdate(parent,savedParent)
-        res.redirect("/index")
+        if(currentPlan.screens[screenNumber].inUse){
+            req.logout()
+            req.flash("error","This Screen Already In Use")
+            res.redirect("/signin")
+        }else{
+            currentPlan.screens[screenNumber].inUse = true
+            parentUser.currentPlan = currentPlan
+            var savedParent = await parentUser.save()
+            var updatedUser = await User.findByIdAndUpdate(parent,savedParent)
+            res.redirect("/index")
+        }
     }   
 })
 
