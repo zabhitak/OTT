@@ -100,15 +100,17 @@ router.get("/logout",async (req,res) => {
     if(req.user){
         var userId = req.user._id
         var user = await User.findById(userId)
-        if(user.parent != null){
-            var {parent} = user
-            var parentUser = await User.findById(parent)
-            var { screenSelected } = user
-            var {currentPlan} = parentUser
-            currentPlan.screens[screenSelected].inUse = false
-            parentUser.currentPlan = currentPlan
-            var savedParent = await parentUser.save()
-            var updatedUser = await User.findByIdAndUpdate(parent,savedParent)
+        if(user){
+            if(user.parent != null){
+                var {parent} = user
+                var parentUser = await User.findById(parent)
+                var { screenSelected } = user
+                var {currentPlan} = parentUser
+                currentPlan.screens[screenSelected].inUse = false
+                parentUser.currentPlan = currentPlan
+                var savedParent = await parentUser.save()
+                var updatedUser = await User.findByIdAndUpdate(parent,savedParent)
+            }
         }
         req.logout();
         req.flash("success","SUCCESSFULLY LOGGED YOU OUT")

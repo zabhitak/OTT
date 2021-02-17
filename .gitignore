@@ -5,3 +5,5 @@ node_modules
 public/requested
 public/videos
 public/thumbnails
+public/previews/
+public/trailers/
