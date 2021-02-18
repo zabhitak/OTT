@@ -62,7 +62,7 @@ const signup = async (req,res) => {
                         "Team ,OTT"
                     }
             
-                    // var response = await smtpTrans.sendMail(mailOpts)
+                    var response = await smtpTrans.sendMail(mailOpts)
                     var otpCreated = await OTP.create({
                         timeOfSending : Date.now(),
                         otp ,
