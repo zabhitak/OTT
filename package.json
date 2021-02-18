@@ -34,6 +34,7 @@
     "passport-local-mongoose": "^6.0.1",
     "path": "^0.12.7",
     "pdfkit": "^0.11.0",
+    "pm2": "^4.5.4",
     "sanitize": "^2.1.0",
     "socket.io": "^3.0.4",
     "stripe": "^8.129.0",
