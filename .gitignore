@@ -2,3 +2,9 @@ node_modules
 
 .env
 
+public/previews
+public/trailers
+public/thumbnails
+public/requested
+public/videos
+public/thumbnails

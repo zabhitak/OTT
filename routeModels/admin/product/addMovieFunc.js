@@ -8,6 +8,16 @@ var mv = require('mv');
 
 addProductFunc = async (req, res) => {
   try {
+    var dir1 = path.join('public', 'videos');
+    var dir2 = path.join('public', 'trailers');
+    var dir3 = path.join('public', 'previews');
+    var dir4 = path.join('public', 'thumbnails');
+    if (!fileSystem.existsSync(dir1) || !fileSystem.existsSync(dir2) || !fileSystem.existsSync(dir3) ||!fileSystem.existsSync(dir4)){
+      fileSystem.mkdirSync(dir1);
+      fileSystem.mkdirSync(dir2);
+      fileSystem.mkdirSync(dir3);
+      fileSystem.mkdirSync(dir4);
+  }
     const userId = req.user._id;
     var user = await Admin.findById(userId);
     if (user.role == 'User') {
@@ -40,20 +50,37 @@ addProductFunc = async (req, res) => {
         var newPath3 = new Date().getTime() + '-' + files.video.name;
         var newPath3 = path.join('public', 'previews', newPath3);
 
-        files.thumbnail.forEach((thumbnail) => {
-          var oldPathThumbnail = thumbnail.path;
-          var thumbnail = new Date().getTime() + '-' + thumbnail.name;
-          var thumbnail = path.join('public', 'thumbnails', thumbnail);
-          images.push(thumbnail);
-
-          mv(oldPathThumbnail, thumbnail, function (error2) {
-            if (error2) {
-              console.log(error2);
-              req.flash('error', 'Cannot Add Movie Right Now !!!');
-              res.redirect('/admin/index');
-            }
+        if(!isNaN(files.thumbnail.length)){
+          files.thumbnail.forEach((thumbnail) => {
+            var oldPathThumbnail = thumbnail.path;
+            var thumbnail = new Date().getTime() + '-' + thumbnail.name;
+            var thumbnail = path.join('public', 'thumbnails', thumbnail);
+            images.push(thumbnail);
+    
+            mv(oldPathThumbnail, thumbnail, function (error2) {
+              if (error2) {
+                console.log(error2);
+                req.flash('error', 'Cannot Add Movie Request Right Now !!!');
+                res.redirect('/index');
+              }
+            });
           });
-        });
+        }
+  
+        else{
+            var oldPathThumbnail = files.thumbnail.path;
+            var thumbnail = new Date().getTime() + '-' + files.thumbnail.name;
+            var thumbnail = path.join('public', 'thumbnails', thumbnail);
+            images.push(thumbnail);
+    
+            mv(oldPathThumbnail, thumbnail, function (error2) {
+              if (error2) {
+                console.log(error2);
+                req.flash('error', 'Cannot Add Movie Request Right Now !!!');
+                res.redirect('/index');
+              }
+            });
+        }
         mv(oldPath, newPath, function (error2) {
           if (error2) {
             console.log(error2);
