@@ -12,12 +12,17 @@ addProductFunc = async (req, res) => {
     var dir2 = path.join('public', 'trailers');
     var dir3 = path.join('public', 'previews');
     var dir4 = path.join('public', 'thumbnails');
-    if (!fileSystem.existsSync(dir1) || !fileSystem.existsSync(dir2) || !fileSystem.existsSync(dir3) ||!fileSystem.existsSync(dir4)){
+    if (
+      !fileSystem.existsSync(dir1) ||
+      !fileSystem.existsSync(dir2) ||
+      !fileSystem.existsSync(dir3) ||
+      !fileSystem.existsSync(dir4)
+    ) {
       fileSystem.mkdirSync(dir1);
       fileSystem.mkdirSync(dir2);
       fileSystem.mkdirSync(dir3);
       fileSystem.mkdirSync(dir4);
-  }
+    }
     const userId = req.user._id;
     var user = await Admin.findById(userId);
     if (user.role == 'User') {
@@ -50,13 +55,13 @@ addProductFunc = async (req, res) => {
         var newPath3 = new Date().getTime() + '-' + files.video.name;
         var newPath3 = path.join('public', 'previews', newPath3);
 
-        if(!isNaN(files.thumbnail.length)){
+        if (!isNaN(files.thumbnail.length)) {
           files.thumbnail.forEach((thumbnail) => {
             var oldPathThumbnail = thumbnail.path;
             var thumbnail = new Date().getTime() + '-' + thumbnail.name;
             var thumbnail = path.join('public', 'thumbnails', thumbnail);
             images.push(thumbnail);
-    
+
             mv(oldPathThumbnail, thumbnail, function (error2) {
               if (error2) {
                 console.log(error2);
@@ -65,21 +70,19 @@ addProductFunc = async (req, res) => {
               }
             });
           });
-        }
-  
-        else{
-            var oldPathThumbnail = files.thumbnail.path;
-            var thumbnail = new Date().getTime() + '-' + files.thumbnail.name;
-            var thumbnail = path.join('public', 'thumbnails', thumbnail);
-            images.push(thumbnail);
-    
-            mv(oldPathThumbnail, thumbnail, function (error2) {
-              if (error2) {
-                console.log(error2);
-                req.flash('error', 'Cannot Add Movie Request Right Now !!!');
-                res.redirect('/index');
-              }
-            });
+        } else {
+          var oldPathThumbnail = files.thumbnail.path;
+          var thumbnail = new Date().getTime() + '-' + files.thumbnail.name;
+          var thumbnail = path.join('public', 'thumbnails', thumbnail);
+          images.push(thumbnail);
+
+          mv(oldPathThumbnail, thumbnail, function (error2) {
+            if (error2) {
+              console.log(error2);
+              req.flash('error', 'Cannot Add Movie Request Right Now !!!');
+              res.redirect('/index');
+            }
+          });
         }
         mv(oldPath, newPath, function (error2) {
           if (error2) {
@@ -105,36 +108,44 @@ addProductFunc = async (req, res) => {
           }
         });
 
-        fileSystem.rename(oldPath, newPath, function (error2) {
-          var currentTime = new Date().getTime();
+        var movie;
 
-          getVideoDurationInSeconds(newPath).then((duration) => {
+        fileSystem.rename(oldPath, newPath, async function (error2) {
+          var currentTime = new Date().getTime();
+          getVideoDurationInSeconds(newPath).then(async (duration) => {
             var hours = Math.floor(duration / 60 / 60);
             var minutes = Math.floor(duration / 60) - hours * 60;
             var seconds = Math.floor(duration % 60);
+            if (!hours) {
+              movie = minutes + 'm ' + seconds + 's';
+            } else {
+              movie = hours + 'h ' + minutes + 'm ' + seconds + 's';
+            }
+
+            const newProduct = await Product.create({
+              title,
+              quality,
+              description,
+              category,
+              releaseYear,
+              language,
+              movieDuration: movie,
+              forVIPOnly,
+              user,
+              images,
+              video: newPath,
+              trailer: newPath2,
+              preview: newPath3,
+            });
+
+            user.products.unshift(newProduct);
+
+            var savedUser = await user.save();
+
+            var updatedUser = await Admin.findByIdAndUpdate(userId, savedUser);
           });
         });
-        const newProduct = await Product.create({
-          title,
-          quality,
-          description,
-          category,
-          releaseYear,
-          language,
-          movieDuration,
-          forVIPOnly,
-          user,
-          images,
-          video: newPath,
-          trailer: newPath2,
-          preview: newPath3,
-        });
 
-        user.products.unshift(newProduct);
-
-        var savedUser = await user.save();
-
-        var updatedUser = await Admin.findByIdAndUpdate(userId, savedUser);
         req.flash('success', 'Movie ' + title + ' uploaded successfully');
         res.redirect('/admin/index');
       });
