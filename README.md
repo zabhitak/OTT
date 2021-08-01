@@ -57,32 +57,6 @@ OTT can :
 >* 🌎- Responsive Neumorphic Frontend
 
 
-
-<!-- ## Images of OTT!
-
-
-<table>
-  <tr>
-    <td align="center"><img src="https://github.com/zabhitak/OTT/blob/master/Screenshots/my products.PNG"  height="360px;"width="600px;"alt=""/></td>
-    <!-- <td align="right"><img src="https://github.com/zabhitak/OTT/blob/master/Screenshots/dashboard.PNG" height="400px;" width="600px;"alt=""/><br /></td> -->
-    <td align="center"><img src="https://github.com/zabhitak/OTT/blob/master/Screenshots/new produ.PNG" height="360px;" width="600px;"alt=""/></td>
-   
-    
-  </tr>
-  </table>
-  <p align="center">
- <img src="https://github.com/zabhitak/OTT/blob/master/Screenshots/products.PNG" align="center" alt=""/>
-</p>
-   
-  <table>
-  <tr>
-        <td align="center"><img src="https://github.com/zabhitak/OTT/blob/master/Screenshots/pay.PNG" height="360px;"width="600px;" alt=""/><br /></td>
-        <td align="center"><img src="https://github.com/zabhitak/OTT/blob/master/Screenshots/paying.PNG"height="400px;" width="650px;" alt=""/><br /></td>
-  </tr>
-</table> -->
-
-
-
 # TechStack
 <table>
   <tr>
