@@ -60,9 +60,9 @@ OTT can :
 # TechStack
 <table>
   <tr>
-    <td><img src="https://github.com/zabhitak/OTT/blob/master/Screenshots/node.jpg" width="150px" height="150px" /></td>
-    <td><img src="https://github.com/zabhitak/OTT/blob/master/Screenshots/mongoose.png" width="150px" height="150px" /></td>
-    <td><img src="https://github.com/zabhitak/OTT/blob/master/Screenshots/bootstrap.jpg"  width="150px" height="150px"></td>
+    <td><img src="https://github.com/zabhitak/OTT/blob/master/Screenshots/tools/node.jpg" width="150px" height="150px" /></td>
+    <td><img src="https://github.com/zabhitak/OTT/blob/master/Screenshots/tools/mongoose.png" width="150px" height="150px" /></td>
+    <td><img src="https://github.com/zabhitak/OTT/blob/master/Screenshots/tools/bootstrap.jpg"  width="150px" height="150px"></td>
     <br />  </td>
   </tr>
   </table>
