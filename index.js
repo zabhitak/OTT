@@ -44,6 +44,7 @@ mongoose
     console.log('database connected');
   })
   .catch((err) => {
+    console.log("abhinavvvvvvvvvvvv");
     console.log(err);
   });
 

@@ -23,7 +23,7 @@
     "fs": "0.0.1-security",
     "get-video-duration": "^3.0.2",
     "http": "0.0.1-security",
-    "mongoose": "^5.11.8",
+    "mongoose": "^5.11.18",
     "multer": "^1.4.2",
     "mv": "^2.1.1",
     "nodemailer": "^6.4.17",
