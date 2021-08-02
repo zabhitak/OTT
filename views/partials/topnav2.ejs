@@ -1,9 +1,6 @@
-<header id="main-header">
-    <div class="main-header">
-       <div class="container-fluid">
-          <div class="row">
-             <div class="col-sm-12">
-                <nav class="navbar navbar-expand-lg navbar-light p-0">
+<div class="iq-top-navbar">
+    <div class="iq-navbar-custom">
+        <nav class="navbar navbar-expand-lg navbar-light p-0">
                    <a href="#" class="navbar-toggler c-toggler" data-toggle="collapse"
                       data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                       aria-expanded="false" aria-label="Toggle navigation">
@@ -13,100 +10,24 @@
                          <span class="navbar-menu-icon navbar-menu-icon--bottom"></span>
                       </div>
                    </a>
-                   <a class="navbar-brand" href="/index"> OTT </a>
+                   <a class="navbar-brand" href="/index"> </a>
                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
                       <div class="menu-main-menu-container">
                          <ul id="top-menu" class="navbar-nav ml-auto">
-                            <li class="menu-item">
-                               <a href="/index">Home</a>
+                            <li class="menu-item" style="margin-top: 20px;">
+                               <a href="/index" style="color: white;">Home</a>
                             </li>
                          </ul>
                       </div>
                    </div>
-                   <div class="mobile-more-menu">
-                      <a href="javascript:void(0);" class="more-toggle" id="dropdownMenuButton"
-                         data-toggle="more-toggle" aria-haspopup="true" aria-expanded="false">
-                      <div class="navbar-right position-relative">
-                        
-                        <li>
-                           <a href="#" class="iq-user-dropdown search-toggle d-flex align-items-center">
-                           <img src="images/user/user.jpg" class="img-fluid avatar-40 rounded-circle"
-                              alt="user">
-                           </a>
-                           <div class="iq-sub-dropdown iq-user-dropdown">
-                              <div class="iq-card shadow-none m-0">
-                                 <div class="iq-card-body p-0 pl-3 pr-3">
-                                    <a href="/addMovieUser" class="iq-sub-card setting-dropdown">
-                                       <div class="media align-items-center">
-                                          <div class="right-icon">
-                                             <i class="ri-settings-4-line text-primary"></i>
-                                          </div>
-                                          <div class="media-body ml-3">
-                                             <h6 class="mb-0 ">Add Movie</h6>
-                                          </div>
-                                       </div>
-                                    </a>
-                                    <a href="/plans" class="iq-sub-card setting-dropdown">
-                                       <div class="media align-items-center">
-                                          <div class="right-icon">
-                                             <i class="ri-settings-4-line text-primary"></i>
-                                          </div>
-                                          <div class="media-body ml-3">
-                                             <h6 class="mb-0 ">Pricing Plan</h6>
-                                          </div>
-                                       </div>
-                                    </a>
-                                    <% if( user.isVIP == true && user.currentPlan.screens.length == 0  ){ %> 
-                                      <a href="/createScreens" class="iq-sub-card setting-dropdown">
-                                         <div class="media align-items-center">
-                                            <div class="right-icon">
-                                               <i class="ri-settings-4-line text-primary"></i>
-                                            </div>
-                                            <div class="media-body ml-3">
-                                               <h6 class="mb-0 ">Create Screens</h6>
-                                            </div>
-                                         </div>
-                                      </a>
-                                   <% } %>
-                                   <% if(user.parent == null && user.currentPlan.screens.length != 0 ){ %> 
-                                      <a href="/myScreens" class="iq-sub-card setting-dropdown">
-                                         <div class="media align-items-center">
-                                            <div class="right-icon">
-                                               <i class="ri-settings-4-line text-primary"></i>
-                                            </div>
-                                            <div class="media-body ml-3">
-                                               <h6 class="mb-0 ">My Screens</h6>
-                                            </div>
-                                         </div>
-                                      </a>
-                                   <% } %>
-                                   
-                                    <a href="/logout" class="iq-sub-card setting-dropdown">
-                                       <div class="media align-items-center">
-                                          <div class="right-icon">
-                                             <i class="ri-logout-circle-line text-primary"></i>
-                                          </div>
-                                          <div class="media-body ml-3">
-                                             <h6 class="mb-0 ">Logout</h6>
-                                          </div>
-                                       </div>
-                                    </a>
-                                 </div>
-                              </div>
-                           </div>
-                        </li>
-                     
-                  </div>
-                      </a>
-                   </div>
                    <div class="navbar-right menu-right">
                       <ul class="d-flex align-items-center list-inline m-0">
-                         <li class="nav-item nav-icon">
+                         <li class="nav-item nav-icon" style="margin-top: 20px;">
                             <a href="#" class="iq-user-dropdown search-toggle p-0 d-flex align-items-center"
                                data-toggle="search-toggle">
                             <img src="images/user/user.jpg" class="img-fluid avatar-40 rounded-circle" alt="user">
                             </a>
-                            <div class="iq-sub-dropdown iq-user-dropdown">
+                            <div class="iq-sub-dropdown iq-user-dropdown"  >
                                <div class="iq-card shadow-none m-0">
                                   <div class="iq-card-body p-0 pl-3 pr-3">
                                      <a href="/addMovieUser" class="iq-sub-card setting-dropdown">
@@ -171,9 +92,5 @@
                       </ul>
                    </div>
                 </nav>
-                <div class="nav-overlay"></div>
-             </div>
-          </div>
-       </div>
     </div>
- </header>
+ </div>

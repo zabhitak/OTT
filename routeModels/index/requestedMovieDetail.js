@@ -1,5 +1,3 @@
-const User = require("../user/User")
-const Admin = require("../admin/Admin")
 const RequestedProduct = require("../admin/product/RequestedProduct")
 
 myProducts =  async (req,res) => {

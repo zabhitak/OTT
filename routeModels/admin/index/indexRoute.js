@@ -12,8 +12,7 @@ indexRoute = (req,res) => {
             if(admin.role == 'User' ){
               res.redirect("/index")
             }else{
-              res.render("admin/dashboard",{ user : admin, title : "Dashboard" })
-         
+              res.redirect("/myMovies")
             }
           }else{
             res.redirect("/index")

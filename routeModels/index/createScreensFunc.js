@@ -21,7 +21,7 @@ createScreens =  async (req,res) => {
             }
             num += ""
             var {name1} = req.body
-            var newUser = await User.register({ username : username+"0",email : email+"0" , parent : userId, currentPlan ,screenSelected : 0 }, num ) 
+            var newUser = await User.register({ username : username+"0",email : email+"0" , parent : userId, currentPlan,isVIP : true ,screenSelected : 0, }, num ) 
          
             await newUser.save()
             user.child.push(newUser)
@@ -39,7 +39,7 @@ createScreens =  async (req,res) => {
                 }
                 num += ""
                 var {name2} = req.body
-                var newUser2 = await User.register({ username : username+"1",email : email+"1" , parent : userId, currentPlan ,screenSelected : 1 }, num ) 
+                var newUser2 = await User.register({ username : username+"1",email : email+"1" , parent : userId, currentPlan,isVIP : true ,screenSelected : 1 }, num ) 
                 await newUser2.save()
                 user.child.push(newUser2)
                 screens.push({
@@ -57,7 +57,7 @@ createScreens =  async (req,res) => {
                 }
                 num += ""
                 var {name3} = req.body
-                var newUser3 = await User.register({ username : username+"2",email : email+"2" , parent : userId, currentPlan ,screenSelected : 2 }, num ) 
+                var newUser3 = await User.register({ username : username+"2",email : email+"2" , parent : userId, currentPlan,isVIP : true ,screenSelected : 2 }, num ) 
                 await newUser3.save()
                 user.child.push(newUser3)
                 screens.push({
@@ -75,7 +75,7 @@ createScreens =  async (req,res) => {
                  }
                 num += ""
                  var {name4} = req.body
-                var newUser4 = await User.register({ username : username+"3",email : email+"3" , parent : userId, currentPlan ,screenSelected : 3 }, num ) 
+                var newUser4 = await User.register({ username : username+"3",email : email+"3" , parent : userId, currentPlan,isVIP : true ,screenSelected : 3 }, num ) 
                 await newUser4.save()
                 user.child.push(newUser4)
                 screens.push({

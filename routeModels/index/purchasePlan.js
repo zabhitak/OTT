@@ -51,7 +51,6 @@ purchasePlan =  async (req,res) => {
        
     } catch (error) {
         console.log(error)
-        console.log("error yha h purchase plan me line 55")
         req.flash("error","Not able to fetch data from database")
         res.redirect("/")
     }

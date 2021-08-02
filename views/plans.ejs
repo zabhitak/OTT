@@ -64,11 +64,13 @@
                                         
                                     </td>
                                     <td class="text-center">
+                                        <!-- any of the plan is not purchased -->
                                         <% if( user.parent == null && ( user.currentPlan.screens.length == 0  ) ){ %> 
                                         <form action="purchasePlan-2" method="POST">
                                             <button type="submit" class="btn btn-hover mt-3">Purchase</button>
                                         </form>
                                         <% }else{ %> 
+                                            <!-- plan is purchased -->
                                             <% if(user.parent != null && user.currentPlan.planName == "Standard"){ %> 
                                                 <a href="#"  class="btn btn-success mb-3 ">
                                                     Purchased <i class="ri-check-line ri-2x"></i>

@@ -10,7 +10,6 @@ const addMovieUser = require(`${commonPath}addMovieUser`)
 const addMovieUserFunc = require(`${commonPath}addMovieUserFunc`)
 const requestedMovieDetail = require(`${commonPath}requestedMovieDetail`)
 const plans = require(`${commonPath}plans`)
-const manageuser = require(`${commonPath}manageuser`)
 const purchasePlan = require(`${commonPath}purchasePlan`)
 const createScreens = require(`${commonPath}createScreens`)
 const createScreensFunc = require(`${commonPath}createScreensFunc`)
@@ -35,7 +34,6 @@ router.get('/', async (req,res) => {
 } )
 
 router.get("/index",middleware.isLoggedIn,indexRoute)
-router.get("/manageuser",middleware.isLoggedIn,manageuser)
 router.get("/addMovieUser",middleware.isLoggedIn,addMovieUser)
 router.post("/addMovieUser",middleware.isLoggedIn,addMovieUserFunc)
 
