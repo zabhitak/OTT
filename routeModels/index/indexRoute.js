@@ -18,7 +18,7 @@ indexRoute = async (req,res) => {
               res.redirect("/admin/index")
             }else{
               var currentDate = new Date()
-              if(user.isVIP == true && currentDate <= user.currentPlan.expiryDate ){
+              if(user.isVIP == true && currentDate <= user.currentPlan.expiryDate && !user.parent ){
                 res.redirect("selectScreen")
               }else{
                 var { movies,requestedMovies } = user
