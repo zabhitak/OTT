@@ -1,5 +1,6 @@
 # OTT 
-OTT is a meal kit box, like zomato or swiggy sells food from restaurants, OTT  will sell the items required to make that dish in proper proportion, so that sungle user customer don't need to buy a whole bottle for tble spoon of vinegar and like others.
+OTT is a netflix add on website consist of all basic features an ott platform website requires such as different plans, advance video player with some add on from our side like user can create his own channel and post a video but it goes public only after admin give his approval.
+
 
 <br />
 
@@ -99,11 +100,7 @@ OTT can :
    <h3>  Plans </h3>
    <img src="https://github.com/zabhitak/OTT/blob/master/Screenshots/user/plans.png" alt=""/></td>
     </tr>
-  <tr>
-    <td align="center">
-   <h3> Add To Cart </h3>
-   <img src="https://github.com/zabhitak/OTT/blob/master/Screenshots/user/buy_plans.png" alt=""/><br />      </td>
-  </tr>
+
   </table>
 
 
