@@ -3,12 +3,12 @@ OTT is a meal kit box, like zomato or swiggy sells food from restaurants, OTT  w
 
 <br />
 
-<!-- <p align="center">
- <img src="https://github.com/zabhitak/OTT/blob/master/Screenshots/user dash.PNG" height="550px;"width="700px;"alt=""/>
-</p> -->
-
 <p align="center">
 <h1 align="center">OTT User Dashboard</h1>
+</p>
+
+<p align="center">
+ <img src="https://github.com/zabhitak/OTT/blob/master/Screenshots/user/user_dashboard.png" alt=""/>
 </p>
 
 
@@ -55,6 +55,90 @@ OTT can :
 >* ⭐- Realtime Status Update functionality using Sockets.
 >* 📩- Email Sending On Register & Order Placement.
 >* 🌎- Responsive Neumorphic Frontend
+
+
+
+# Screenshots
+## Authentication
+<table>
+  <tr>
+    <td align="center">
+   <h3> Sign In </h3>
+   <img src="https://github.com/zabhitak/OTT/blob/master/Screenshots/user/signin.png" /></td>
+  
+  </tr>
+    <tr>
+  <td align="center">
+  <h3> Verify Account </h3>
+   <img src="https://github.com/zabhitak/OTT/blob/master/Screenshots/user/email_otp.png" /><br />      </td>
+  </tr>
+
+  <tr>
+  <td align="center">
+  <h3> Login Screens </h3>
+   <img src="https://github.com/zabhitak/OTT/blob/master/Screenshots/user/login_screens.png" /><br />      </td>
+  </tr>
+  </table>
+
+<br />
+
+
+## Screens
+<table>
+    <tr>
+    <td align="center">
+   <h3> Screens </h3>
+   <img src="https://github.com/zabhitak/OTT/blob/master/Screenshots/user/screens.png" alt=""/><br />      </td>
+  </tr>
+  <tr>
+    <td align="center">
+   <h3>  Screen Pins</h3>
+   <img src="https://github.com/zabhitak/OTT/blob/master/Screenshots/user/pin_generation.png" alt=""/></td>
+    </tr>
+    <td align="center">
+   <h3>  Plans </h3>
+   <img src="https://github.com/zabhitak/OTT/blob/master/Screenshots/user/plans.png" alt=""/></td>
+    </tr>
+  <tr>
+    <td align="center">
+   <h3> Add To Cart </h3>
+   <img src="https://github.com/zabhitak/OTT/blob/master/Screenshots/user/buy_plans.png" alt=""/><br />      </td>
+  </tr>
+  </table>
+
+
+
+<br />
+
+## Movies
+<table>
+  <tr>
+    <td align="center">
+        <h3> Video Player </h3>
+        <img src="https://github.com/zabhitak/OTT/blob/master/Screenshots/user/video_player.png" alt=""/></td>
+        </tr>
+  <tr>
+    <td align="center">
+        <h3> User Request </h3>
+        <img src="https://github.com/zabhitak/OTT/blob/master/Screenshots/user/user_request_movie.png" alt=""/></td>
+        </tr>
+  </table>
+
+<br />
+
+
+## Admin
+
+<table>
+  <tr>
+        <img src="https://github.com/zabhitak/OTT/blob/master/Screenshots/admin/admin_movies.png" alt=""/></td>
+        </tr>
+        <tr>
+  <tr>
+        <img src="https://github.com/zabhitak/OTT/blob/master/Screenshots/admin/addMovie.png" alt=""/></td>
+        </tr>
+        <tr>
+  </table>
 
 
 # TechStack
