@@ -50,12 +50,9 @@ OTT can :
 >* 🔐- User Authentication
 >* 🛒- Cart Functionality
 >* 👻- Admin Dashboard
->* ⚡- Realtime - Action Notifications
 >* 📱- OTP Authentication
->* 💰- Stripe Payment Gateway Integration
 >* ⭐- Realtime Status Update functionality using Sockets.
 >* 📩- Email Sending On Register & Order Placement.
->* 🌎- Responsive Neumorphic Frontend
 
 
 
