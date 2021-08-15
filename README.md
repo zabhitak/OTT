@@ -51,8 +51,6 @@ OTT can :
 >* 🛒- Cart Functionality
 >* 👻- Admin Dashboard
 >* 📱- OTP Authentication
->* ⭐- Realtime Status Update functionality using Sockets.
->* 📩- Email Sending On Register & Order Placement.
 
 
 
